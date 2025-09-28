@@ -368,3 +368,11 @@ Democratic Green Party of Rwanda. https://en.wikipedia.org/wiki/Democratic_Green
 Kwibuka Flame of Hope – UN tribute. https://www.un.org/en/unis-nairobi/press-release-permanent-tribute-1994-genocide-against-tutsi-rwanda-installed-united;
 
 Kigali Green Complex. https://en.wikipedia.org/wiki/Kigali_Green_Complex.
+
+
+
+
+# Academic Integrity
+All sources were properly cited. Implementations and analysis represent original work. 
+No AI-generated content was copied without attribution or adaptation.
+
