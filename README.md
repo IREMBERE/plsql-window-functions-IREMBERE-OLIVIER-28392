@@ -224,7 +224,8 @@ This query ranks customers based on their total revenue.
 
 Useful for identifying top spenders and their distribution.
 
-``sql
+
+
 SELECT customer_id, 
        SUM(total_amount) AS total_revenue,
        ROW_NUMBER() OVER (ORDER BY SUM(total_amount) DESC) AS row_num,
@@ -242,8 +243,8 @@ This query shows how each customer's spending evolves over time.
 
 It calculates both the running total and running average of revenue.
 
-``sql
--- Calculate running total and average revenue using ROWS and RANGE
+
+
 SELECT customer_id, sale_date, total_amount,
        SUM(total_amount) OVER (
            PARTITION BY customer_id 
@@ -266,8 +267,10 @@ This query compares each transaction to the previous one for the same customer.
 
 Ideal for customer behavioral analysis.
 
-``sql
--- Compare each transaction to the previous one for the same customer
+Compare each transaction to the previous one for the same customer
+
+
+
 SELECT customer_id, sale_date, total_amount,
        LAG(total_amount) OVER (
            PARTITION BY customer_id 
@@ -284,6 +287,7 @@ SELECT customer_id, sale_date, total_amount,
        ) AS growth_percent
 FROM transactions;
 
+
 ### 4. Distribution Functions — Customer Segmentation
 This query divides customers into four revenue-based segments using `NTILE(4)` and shows their percentile rank with `CUME_DIST()`.  
 
@@ -292,8 +296,10 @@ This query divides customers into four revenue-based segments using `NTILE(4)` a
 
 Useful for targeting top-tier customers or designing loyalty programs.
 
-``sql
--- Segment customers into quartiles based on total revenue
+Segment customers into quartiles based on total revenue
+
+
+
 SELECT customer_id, 
        SUM(total_amount) AS total_revenue,
        NTILE(4) OVER (ORDER BY SUM(total_amount) DESC) AS revenue_quartile,
