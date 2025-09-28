@@ -212,6 +212,100 @@ Each order has one or more payments.
 
 ![ER Diagram](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/ER%20Diagram%20of%20project%20green_flame_rwanda%20-%20public.png)
 
+
+# Window Functions Implementation
+
+### 1. Ranking Functions — Top N Customers by Revenue
+This query ranks customers based on their total revenue.  
+- `ROW_NUMBER()` gives a unique position  
+- `RANK()` allows gaps  
+- `DENSE_RANK()` avoids gaps  
+- `PERCENT_RANK()` shows relative standing  
+
+Useful for identifying top spenders and their distribution.
+
+``sql
+SELECT customer_id, 
+       SUM(total_amount) AS total_revenue,
+       ROW_NUMBER() OVER (ORDER BY SUM(total_amount) DESC) AS row_num,
+       RANK() OVER (ORDER BY SUM(total_amount) DESC) AS rank,
+       DENSE_RANK() OVER (ORDER BY SUM(total_amount) DESC) AS dense_rank,
+       PERCENT_RANK() OVER (ORDER BY SUM(total_amount) DESC) AS percent_rank
+FROM transactions
+GROUP BY customer_id;
+
+### 2. Aggregate Functions with Frames — Running Totals & Trends
+This query shows how each customer's spending evolves over time.  
+- `ROWS` counts exact rows  
+- `RANGE` includes all rows with equal values  
+- Useful for tracking trends and smoothing out fluctuations  
+
+It calculates both the running total and running average of revenue.
+
+``sql
+-- Calculate running total and average revenue using ROWS and RANGE
+SELECT customer_id, sale_date, total_amount,
+       SUM(total_amount) OVER (
+           PARTITION BY customer_id 
+           ORDER BY sale_date 
+           ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+       ) AS running_total_rows,
+       AVG(total_amount) OVER (
+           PARTITION BY customer_id 
+           ORDER BY sale_date 
+           RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+       ) AS running_avg_range
+FROM transactions;
+
+
+### 3. Navigation Functions — Period-to-Period Analysis
+This query compares each transaction to the previous one for the same customer.  
+- `LAG()` gets the previous transaction amount  
+- `LEAD()` gets the next transaction amount  
+- `growth_percent` shows how spending increased or decreased  
+
+Ideal for customer behavioral analysis.
+
+``sql
+-- Compare each transaction to the previous one for the same customer
+SELECT customer_id, sale_date, total_amount,
+       LAG(total_amount) OVER (
+           PARTITION BY customer_id 
+           ORDER BY sale_date
+       ) AS previous_amount,
+       LEAD(total_amount) OVER (
+           PARTITION BY customer_id 
+           ORDER BY sale_date
+       ) AS next_amount,
+       ROUND(
+           (total_amount - LAG(total_amount) OVER (PARTITION BY customer_id ORDER BY sale_date)) 
+           * 100.0 / NULLIF(LAG(total_amount) OVER (PARTITION BY customer_id ORDER BY sale_date), 0), 
+           2
+       ) AS growth_percent
+FROM transactions;
+
+### 4. Distribution Functions — Customer Segmentation
+This query divides customers into four revenue-based segments using `NTILE(4)` and shows their percentile rank with `CUME_DIST()`.  
+
+- `NTILE(4)` splits customers into quartiles (top 25%, 50%, 75%, etc.)  
+- `CUME_DIST()` shows the cumulative distribution percentile  
+
+Useful for targeting top-tier customers or designing loyalty programs.
+
+``sql
+-- Segment customers into quartiles based on total revenue
+SELECT customer_id, 
+       SUM(total_amount) AS total_revenue,
+       NTILE(4) OVER (ORDER BY SUM(total_amount) DESC) AS revenue_quartile,
+       CUME_DIST() OVER (ORDER BY SUM(total_amount) DESC) AS cumulative_distribution
+FROM transactions
+GROUP BY customer_id;
+
+
+
+
+
+
 # References 
 Rwanda Green Fund (FONERWA). https://greenfund.rw;
 
