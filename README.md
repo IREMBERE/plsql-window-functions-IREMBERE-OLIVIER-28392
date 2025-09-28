@@ -65,7 +65,7 @@ Collect, dry, and carbonize waste;
 
 Crush, mix with binder (e.g., cassava flour or starch), mold into briquettes;
 
-Dry & package briquettes;
+Dry and package briquettes;
 
 Phase 3: Marketing and Distribution (Month 6 onwards)
 Branding: “Green Flame – Cook Cheaper, Live Cleaner.”;
