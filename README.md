@@ -36,7 +36,7 @@ iv.Contribute to Rwanda’s vision of being a green, sustainable nation.
 # Target Market
 Households (especially in Kigali, Huye, Musanze);
 
-Restaurants & hotels (big charcoal consumers);
+Restaurants and hotels (big charcoal consumers);
 
 institutions (schools, prisons, hospitals);
 
@@ -52,13 +52,13 @@ Eco-friendly (made from waste, not trees);
 Supports Rwanda’s climate goals.
 
 # Implementation Plan
-Phase 1: Research & Setup (Month 1–2);
+Phase 1: Research and Setup (Month 1–2);
 
 identify key agricultural waste sources;
 
-Partner with local farmers & cooperatives;
+Partner with local farmers and cooperatives;
 
-Acquire briquette-making machine (manual or motorized).
+Acquire briquette making machine (manual or motorized).
 
 Phase 2: Production (Month 3–6)
 Collect, dry, and carbonize waste;
@@ -67,7 +67,7 @@ Crush, mix with binder (e.g., cassava flour or starch), mold into briquettes;
 
 Dry & package briquettes;
 
-Phase 3: Marketing & Distribution (Month 6 onwards)
+Phase 3: Marketing and Distribution (Month 6 onwards)
 Branding: “Green Flame – Cook Cheaper, Live Cleaner.”;
 
 Sell in markets, supermarkets, and through mobile vendors;
@@ -77,9 +77,9 @@ Partner with NGOs and local leaders for promotion;
 # Estimated Budget (Startup Small Scale Pilot)
 Briquette machine: from $800 to $1,500 (manual/motorized);
 
-Drying racks & carbonizing drum: $400;
+Drying racks and carbonizing drum: $400;
 
-Packaging & branding: $300;
+Packaging and branding: $300;
 
 Raw materials (agri waste and cheap or free from farmers);
 
@@ -101,7 +101,7 @@ Reduce deforestation by lowering tree cutting for charcoal;
 
 Provide cheaper fuel to households;
 
-Create direct jobs for youth & women in production/distribution;
+Create direct jobs for youth and women in production/distribution;
 
 Turn waste into profit, keeping communities cleaner.
 
@@ -244,7 +244,7 @@ Each order has one or more payments.
 
 # Window Functions Implementation
 
-### 1. Ranking Functions — Top N Customers by Revenue
+### 1. Ranking Functions (Top N Customers by Revenue)
 This query ranks customers based on their total revenue.  
 - `ROW_NUMBER()` gives a unique position  
 - `RANK()` allows gaps  
@@ -266,7 +266,7 @@ GROUP BY customer_id;
 
 ![Ranking Query 1](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/08.ranking%20fx1.png)
 
-### 2. Aggregate Functions with Frames — Running Totals & Trends
+### 2. Aggregate Functions with Frames (Running Totals and Trends)
 This query shows how each customer's spending evolves over time.  
 - `ROWS` counts exact rows  
 - `RANGE` includes all rows with equal values  
@@ -292,7 +292,7 @@ FROM transactions;
 ![Ranking Query 2](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/09.ranking%20fx2.png)
 
 
-### 3. Navigation Functions — Period-to-Period Analysis
+### 3. Navigation Functions (Period to Period Analysis)
 This query compares each transaction to the previous one for the same customer.  
 - `LAG()` gets the previous transaction amount  
 - `LEAD()` gets the next transaction amount  
@@ -324,7 +324,7 @@ FROM transactions;
 ![Navigation Query](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/10.navigation.png)
 
 
-### 4. Distribution Functions — Customer Segmentation
+### 4. Distribution Functions (Customer Segmentation)
 This query divides customers into four revenue-based segments using `NTILE(4)` and shows their percentile rank with `CUME_DIST()`.  
 
 - `NTILE(4)` splits customers into quartiles (top 25%, 50%, 75%, etc.)  
