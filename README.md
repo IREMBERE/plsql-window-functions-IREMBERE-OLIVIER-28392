@@ -235,6 +235,9 @@ Each order has one or more payments.
 ![Tables and Relationships](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/tables%20and%20relationships.png)
 
 
+# ER DIAGRAM (this is ER diagram i got after connecting my databse to DBeaver CE to get clear diagram)
+
+
 
 ![ER Diagram](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/ER%20Diagram%20of%20project%20green_flame_rwanda%20-%20public.png)
 
