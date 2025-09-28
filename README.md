@@ -210,7 +210,7 @@ Employees are responsible for production tasks;
 
 Each order has one or more payments.
 
-
+![ER Diagram](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/ER%20Diagram%20of%20project%20green_flame_rwanda%20-%20public.png)
 
 # References 
 Rwanda Green Fund (FONERWA). https://greenfund.rw;
