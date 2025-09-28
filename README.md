@@ -105,6 +105,9 @@ Create direct jobs for youth & women in production/distribution;
 
 Turn waste into profit, keeping communities cleaner.
 
+
+![Project Start](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/01.project%20start.png)
+
 # Database Schema
 Tables
 1.customers
@@ -115,10 +118,14 @@ name
 
 region;
 
+![Customer Table](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/02.customer%20table.png)
+
 2.products
 product_id (PK)
 name
 category;
+
+![Product Table](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/03.product%20%20table.png)
 
 3.transactions
 transaction_id (PK)
@@ -131,6 +138,8 @@ sale_date
 
 amount;
 
+![Transaction and Orders Table](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/04.transaction%20table%20and%20orders.png)
+
 4.orders
 order_id (PK)
 
@@ -141,6 +150,8 @@ order_date
 delivery_date
 
 status (pending, delivered, cancelled);
+
+![Transaction and Orders Table](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/04.transaction%20table%20and%20orders.png)
 
 5.employees
 employee_id (PK)
@@ -153,6 +164,8 @@ salary
 
 phone;
 
+![Employees Table](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/05.employees%20table.png)
+
 6.suppliers
 supplier_id (PK)
 
@@ -161,6 +174,8 @@ name
 contact
 
 location;
+
+![Supplies and Raw Materials](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/06.supplies%20and%20raw%20materials.png)
 
 7.raw_materials
 material_id (PK)
@@ -172,6 +187,8 @@ material_name (banana peel, coffee husk, etc.)
 quantity_supplied
 
 date_supplied;
+
+![Supplies and Raw Materials](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/06.supplies%20and%20raw%20materials.png)
 
 8.production
 production_id (PK)
@@ -186,6 +203,8 @@ quantity_produced
 
 employee_id (FK → employees.employee_id);
 
+![Production and Payments](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/07.production%20and%20payments.png)
+
 9.payments
 payment_id (PK)
 
@@ -196,6 +215,8 @@ amount
 method (cash, MoMo, bank)
 
 payment_date;
+
+![Production and Payments](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/07.production%20and%20payments.png)
 
 # Entity-Relationship (ER) Relationships
 One customer can place many orders;
@@ -235,6 +256,8 @@ SELECT customer_id,
 FROM transactions
 GROUP BY customer_id;
 
+![Ranking Query 1](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/08.ranking%20fx1.png)
+
 ### 2. Aggregate Functions with Frames — Running Totals & Trends
 This query shows how each customer's spending evolves over time.  
 - `ROWS` counts exact rows  
@@ -257,6 +280,8 @@ SELECT customer_id, sale_date, total_amount,
            RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
        ) AS running_avg_range
 FROM transactions;
+
+![Ranking Query 2](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/09.ranking%20fx2.png)
 
 
 ### 3. Navigation Functions — Period-to-Period Analysis
@@ -288,6 +313,9 @@ SELECT customer_id, sale_date, total_amount,
 FROM transactions;
 
 
+![Navigation Query](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/10.navigation.png)
+
+
 ### 4. Distribution Functions — Customer Segmentation
 This query divides customers into four revenue-based segments using `NTILE(4)` and shows their percentile rank with `CUME_DIST()`.  
 
@@ -308,7 +336,7 @@ FROM transactions
 GROUP BY customer_id;
 
 
-
+![Segmentation Query](https://raw.githubusercontent.com/IREMBERE/plsql-window-functions-IREMBERE-OLIVIER-28392/main/11.Segimentation.png)
 
 
 
